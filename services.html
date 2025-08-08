@@ -1,0 +1,90 @@
+<!-- Services Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services | StudyLink.net</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .thank-you {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <img src="assets/StudyLink_Logo.png" alt="StudyLink Logo" />
+          <h1>StudyLink.net</h1>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="npse.html">NPSE</a>
+          <a href="bece.html">BECE</a>
+          <a href="wassce.html">WASSCE</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </header>
+
+  <main>
+    <h2>Our Tutoring Services</h2>
+    <p>We provide tutoring for students at every learning level in Sierra Leone:</p>
+    <ul>
+      <li>NPSE Subjects: English, Mathematics, Science, Verbal & Quantitative Reasoning</li>
+      <li>BECE Subjects: Integrated Science, Social Studies, English Language, Math, Business Studies</li>
+      <li>WASSCE Subjects: Biology, Chemistry, Physics, Literature, Mathematics, Government, Economics, and more</li>
+    </ul>
+    <p>All tutoring is personalized and conducted by experienced educators. We focus on exam preparation, understanding difficult concepts, and improving academic performance.</p>
+
+    <h3>Get in Touch</h3>
+    <form id="contactForm" action="https://formspree.io/f/meoavero" method="POST" onsubmit="return handleFormSubmit(event)">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+    <div class="thank-you" id="thankYouMessage">
+      Thank you for contacting us! We'll get back to you shortly.
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 StudyLink.net | Empowering Sierra Leonean Students</p>
+  </footer>
+
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const thankYou = document.getElementById('thankYouMessage');
+
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.reset();
+          thankYou.style.display = 'block';
+          setTimeout(() => {
+            thankYou.style.display = 'none';
+          }, 5000);
+        } else {
+          alert('There was a problem sending your message. Please try again.');
+        }
+      });
+
+      return false;
+    }
+  </script>
+</body>
+</html>
